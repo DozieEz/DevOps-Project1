@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personalized Greeting App</title>
+    <title>DZsolution App</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -67,7 +67,7 @@
 <body>
 
     <div id="app-container">
-        <h1>Personalized Greeting App</h1>
+        <h1>DZsolution App</h1>
 
         <form id="greetingForm">
             <label for="name">Your Name:</label>
