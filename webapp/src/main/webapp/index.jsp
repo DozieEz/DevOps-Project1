@@ -3,72 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
+    <title>Personalized Greeting App</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #app-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
         }
 
         h1 {
             color: #333;
+            margin-bottom: 20px;
         }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
+        label {
+            display: block;
             margin-bottom: 10px;
+            color: #555;
+        }
+
+        input, select, button {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
         button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #greetingOutput {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #333;
         }
     </style>
 </head>
 <body>
 
-    <h1>Task Manager</h1>
+    <div id="app-container">
+        <h1>Personalized Greeting App</h1>
 
-    <form id="taskForm">
-        <label for="task">Add Task:</label>
-        <input type="text" id="task" required>
-        <button type="submit">Add</button>
-    </form>
+        <form id="greetingForm">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" required>
 
-    <ul id="taskList"></ul>
+            <label for="greetingStyle">Select Greeting Style:</label>
+            <select id="greetingStyle" required>
+                <option value="formal">Formal</option>
+                <option value="informal">Informal</option>
+            </select>
+
+            <button type="button" onclick="generateGreeting()">Generate Greeting</button>
+        </form>
+
+        <div id="greetingOutput"></div>
+    </div>
 
     <script>
-        // JavaScript code for task management
-        const taskForm = document.getElementById('taskForm');
-        const taskInput = document.getElementById('task');
-        const taskList = document.getElementById('taskList');
+        function generateGreeting() {
+            const nameInput = document.getElementById('name');
+            const greetingStyleInput = document.getElementById('greetingStyle');
+            const greetingOutput = document.getElementById('greetingOutput');
 
-        taskForm.addEventListener('submit', function(event) {
-            event.preventDefault();
+            const name = nameInput.value.trim();
+            const greetingStyle = greetingStyleInput.value;
 
-            const taskText = taskInput.value.trim();
+            if (name !== '') {
+                let greeting;
 
-            if (taskText !== '') {
-                addTask(taskText);
-                taskInput.value = '';
+                if (greetingStyle === 'formal') {
+                    greeting = `Dear ${name}, we appreciate your presence.`;
+                } else {
+                    greeting = `Hi ${name}! Welcome and have a great time.`;
+                }
+
+                greetingOutput.textContent = greeting;
+            } else {
+                alert('Please enter your name before generating the greeting.');
             }
-        });
-
-        function addTask(taskText) {
-            const li = document.createElement('li');
-            li.textContent = taskText;
-
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.addEventListener('click', function() {
-                li.remove();
-            });
-
-            li.appendChild(deleteButton);
-            taskList.appendChild(li);
         }
     </script>
 
